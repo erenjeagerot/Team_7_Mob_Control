@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EnemyManager : MonoBehaviour
 {
-    public Text healthText;
+    public TMP_Text healthText;
     public GameObject enemy;
     public Transform enemyParent;
     public GameObject enemySpawnPos;

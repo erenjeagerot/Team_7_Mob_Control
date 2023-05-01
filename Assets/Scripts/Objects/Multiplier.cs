@@ -14,10 +14,10 @@ public class Multiplier : MonoBehaviour
         {
             StartCoroutine(SpawnObject(player));
         }
-        else if (other.gameObject.CompareTag("Enemy"))
-        {
-            StartCoroutine(SpawnObject(enemy));
-        }
+        //else if (other.gameObject.CompareTag("Enemy"))
+        //{
+        //    StartCoroutine(SpawnObject(enemy));
+        //}
     }
 
     IEnumerator SpawnObject(GameObject spawnObject)

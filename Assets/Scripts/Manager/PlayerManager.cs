@@ -11,7 +11,8 @@ public class PlayerManager : MonoBehaviour
     public int playerSpawnerHealth;
 
     public Joystick joystick;
-
+    public Animator cannonObject;
+    public GameObject spawnParticlePrefab;
 
     void Update()
     {
@@ -36,7 +37,9 @@ public class PlayerManager : MonoBehaviour
 
     IEnumerator SpawnPlayer()
     {
+        cannonObject.SetTrigger("isShoot");
         Instantiate(player, playerSpawnPos.transform.position, Quaternion.identity, playerParent);
+        Instantiate(spawnParticlePrefab, playerSpawnPos.transform.position, Quaternion.identity, playerParent);
         yield return new WaitForSeconds(0.2f);
     }
 }

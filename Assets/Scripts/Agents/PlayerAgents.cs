@@ -4,13 +4,15 @@ using UnityEngine.AI;
 public class PlayerAgents : MonoBehaviour
 {
     NavMeshAgent agent;
-    private GameObject target;
+    public GameObject target;   //editörden görülmesi için public verildi
     public float destroyTime = 0.2f;
 
+    EnemySpawnerContainer container;
    
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("EnemySpawner");
+        container = transform.parent.GetComponent<EnemySpawnerContainer>();
+        target = container.enemySpawners[0].gameObject;
         agent = GetComponent<NavMeshAgent>();
     }
 

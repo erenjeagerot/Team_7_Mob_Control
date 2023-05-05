@@ -8,7 +8,7 @@ public class PlayerAgents : MonoBehaviour
     public float destroyTime = 0.2f;
 
     EnemySpawnerContainer container;
-   
+
     void Start()
     {
         container = transform.parent.GetComponent<EnemySpawnerContainer>();
@@ -17,13 +17,14 @@ public class PlayerAgents : MonoBehaviour
     }
 
     void Update()
-    { 
+    {
         Move(target.transform.position);
     }
 
     private void Move(Vector3 location)
     {
-        agent.SetDestination(location);
+        if (agent.remainingDistance < 1)
+            agent.SetDestination(location);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,11 +37,13 @@ public class PlayerAgents : MonoBehaviour
         if (other.gameObject.CompareTag("EnemySpawner"))
         {
             Destroy(gameObject, destroyTime);
-            target.GetComponent<EnemyManager>().enemySpawnerHealth--;
+            //target.GetComponent<EnemyManager>().enemySpawnerHealth--;
+            if (other.gameObject.GetComponent<EnemyManager>().enemySpawnerHealth > 0)
+                other.gameObject.GetComponent<EnemyManager>().enemySpawnerHealth--;
 
-            if (target.GetComponent<EnemyManager>().enemySpawnerHealth == 0)
+            if (other.gameObject.GetComponent<EnemyManager>().enemySpawnerHealth <= 0)
             {
-                target.GetComponent<EnemyManager>().enemySpawnCount = 0;
+                other.gameObject.GetComponent<EnemyManager>().enemySpawnCount = 0;
                 GameManager.instance.SetSuccessMenuState(true);
             }
         }

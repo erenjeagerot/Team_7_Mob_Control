@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 
     public int levelCount;
 
-    public GameObject UIPanel, EventSystem;
 
 
     [Header("Level")]
@@ -27,25 +26,24 @@ public class GameManager : MonoBehaviour
     public Button failPlayAgainButton;
 
 
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(UIPanel);
-            loaderPanel.SetActive(false);
-            SceneManager.sceneLoaded += SceneManagerOnsceneLoaded;
-        }
-    }
+    //private void Awake()
+    //{
+    //    if (instance != null)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //    else
+    //    {
+    //        instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //        loaderPanel.SetActive(false);
+    //        SceneManager.sceneLoaded += SceneManagerOnsceneLoaded;
+    //    }
+    //}
 
     private void Start()
     {
-        LoadCurrentLevel();
+        //LoadCurrentLevel();
         SetButtonEvents();
     }
 

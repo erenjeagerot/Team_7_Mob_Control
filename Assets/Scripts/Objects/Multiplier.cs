@@ -12,7 +12,7 @@ public class Multiplier : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(SpawnObject(player));
+            StartCoroutine(SpawnObject(player,other.gameObject.transform));
         }
         //else if (other.gameObject.CompareTag("Enemy"))
         //{
@@ -20,11 +20,11 @@ public class Multiplier : MonoBehaviour
         //}
     }
 
-    IEnumerator SpawnObject(GameObject spawnObject)
+    IEnumerator SpawnObject(GameObject spawnObject,Transform colliderObject)
     {
         for (int i = 0; i < multiplierCount; i++)
         {
-            Instantiate(spawnObject, transform.position, Quaternion.identity);
+            Instantiate(spawnObject, transform.position, Quaternion.identity,colliderObject.parent);
             yield return new WaitForSeconds(0.1f);
         }
         yield return null;
